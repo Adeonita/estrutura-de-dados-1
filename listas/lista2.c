@@ -15,24 +15,40 @@ Nodo *cria_nodo(){
 Nodo *inserir_no_inicio(Nodo *inicio, int n){
     Nodo *novo = cria_nodo();
     novo->info = n;
-    Nodo *anterior;
-    Nodo *atual;
-    
-    atual = inicio;
 
     if(inicio == NULL){
-        Nodo *inicio = novo;
+        inicio = novo;
         novo->prox = NULL;
-   }else
-        if(atual->info < n){
-            novo->prox = inicio;
-            inicio = novo;
+   }else{
+        novo->prox = inicio;
+        inicio = novo;
+   }
+    return inicio;
+}
+
+Nodo *inserir_no_fim(Nodo *inicio, int n){
+    
+    Nodo *novo = cria_nodo();
+    novo->info = n;
+    
+    
+    if(inicio == NULL){
+        novo->prox = NULL;
+        inicio = novo;
+    }else{
+        Nodo *atual;
+        atual = inicio;
+        while(atual->prox != NULL){
+            atual = atual->prox;
         }
-            
-        return inicio;
+        novo->prox = NULL;
+        atual->prox = novo;
+    }
+
 }
 
 void exibe_lista(Nodo *inicio){
+
     Nodo *atual = inicio;
 
     while(atual != NULL){
@@ -45,6 +61,6 @@ void exibe_lista(Nodo *inicio){
 int main(){
     Nodo *inicio = NULL; //Cria uma lista vazia
     inicio = inserir_no_inicio(inicio, 5);
-    inicio = inserir_no_inicio(inicio, 7);
+    inicio = inserir_no_fim(inicio, 7);
     exibe_lista(inicio);
 }
