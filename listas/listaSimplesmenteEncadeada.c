@@ -59,7 +59,7 @@ void insere_ordenado(Lista *inicio_da_lista, int n){
 
 } 
 
-void exibe_lista(Lista *inicio){
+void exibe_lista(Lista *inicio_da_lista){
 
     Nodo *atual;
     //Exibição da lista com While
@@ -71,18 +71,31 @@ void exibe_lista(Lista *inicio){
     printf("\n");
     */
    //Exibição da lista como for
-    for(atual = inicio->primeiro_no; atual != NULL; atual = atual->prox){
+    for(atual = inicio_da_lista->primeiro_no; atual != NULL; atual = atual->prox){
         printf("%d, ", atual->info);
     }    
 }
 
-int main(){
+
+void checa_elemento(Lista *inicio_da_lista, int n){
+    
+    for(Nodo *atual = inicio_da_lista->primeiro_no; atual != NULL; atual = atual->prox){
+        if(n == atual->info){
+            printf("\nO elemento %d está na lista\n", n);
+        }else{
+            printf("\nO elemento não se encontra na lista\n");
+        }
+    }
+    return;
+}
+
+int main(){ 
     Lista *lista = cria_lista();
     int opcao = ' ';
 
     if(lista){
         while(opcao != 0){
-            printf("Digite 1 para inserir 0 para sair, 2 para exibir: ");
+            printf("Digite 1 para inserir, 0 para sair, 2 para exibir, 3 para checar: ");
             scanf("%d",&opcao);
             if(opcao == 1){
                 int n;
@@ -94,6 +107,17 @@ int main(){
                 printf("Os elementos dessa lista são...");
                 exibe_lista(lista);
                 printf("\n");
+            }
+            if(opcao == 3){
+                int n;
+                if(lista->primeiro_no == NULL){
+                    printf("\nLista vazia, impossível checar!\n");
+                }else{
+                    printf("Digite o numero que deseja checar se está na lista: ");
+                    scanf("%d", &n);
+                    checa_elemento(lista, n);
+                }
+                
             }
         }
     }else{
