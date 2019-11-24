@@ -50,11 +50,11 @@ void insere_ordenado(Lista *inicio_da_lista, int n){
     novo->info = n;
 
     if(anterior == NULL){ //Estou andando com atual, e se anterior que é a lista vazia for igual a nulll, insiro no inicio
-        novo->prox = inicio_da_lista->primeiro_no;
-        inicio_da_lista->primeiro_no = novo;
+        novo->prox = inicio_da_lista->primeiro_no;  //Novo->prox recebe o início da lista
+        inicio_da_lista->primeiro_no = novo; //E o inicio da lista recebe o novo
     }else{
-        novo->prox = anterior->prox;
-        anterior->prox = novo;
+        novo->prox = anterior->prox;  //Senao novo->prox recebe o endereço de anterior->prox que é o proximo elemento
+        anterior->prox = novo;  //E o campo anterior->prox recebe o novo
     }
 
 } 
