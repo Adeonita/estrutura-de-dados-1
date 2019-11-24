@@ -30,8 +30,7 @@ Nodo *inserir_no_fim(Nodo *inicio, int n){
     
     Nodo *novo = cria_nodo();
     novo->info = n;
-    
-    
+        
     if(inicio == NULL){
         novo->prox = NULL;
         inicio = novo;
@@ -47,7 +46,7 @@ Nodo *inserir_no_fim(Nodo *inicio, int n){
 
 }
 
-void exibe_lista(Nodo *inicio){
+void *exibe_lista(Nodo *inicio){
 
     Nodo *atual = inicio;
 
@@ -58,9 +57,22 @@ void exibe_lista(Nodo *inicio){
 }
 
 
+
 int main(){
     Nodo *inicio = NULL; //Cria uma lista vazia
-    inicio = inserir_no_inicio(inicio, 5);
-    inicio = inserir_no_fim(inicio, 7);
+    int opcao = ' ';
+    int n;
+
+    while (opcao != 0 ){
+        printf("Insira 1:Inserir 0:sair ");
+        scanf("%d", &opcao);
+        if(opcao == 1){
+            printf("Digite o numero a ser inserido: ");
+            scanf("%d", &n);
+            inicio = inserir_no_inicio(inicio, n);
+        }
+    }
+ 
     exibe_lista(inicio);
+
 }
