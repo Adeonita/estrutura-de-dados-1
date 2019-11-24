@@ -25,19 +25,31 @@ Nodo *cria_nodo(){
     return novo;
 }
 
+/*Insere no inicio da lista
 //Como parâmetros são passados um ponteiro que representa a lista (inicio) e um valor (n)
+*/
 void insere(Lista *inicio_da_lista, int n){
-    Nodo *novo = (Nodo *)malloc(sizeof(Nodo));
-    novo->info = n;
-    novo->prox = inicio_da_lista->primeiro_no;
-    inicio_da_lista->primeiro_no = novo;
-    
+    Nodo *novo = cria_nodo();  //Aloca um novo espaco
+    novo->info = n;  //Atribui ao campo info o valor n
+    novo->prox = inicio_da_lista->primeiro_no; //Novo->prox recebe o inicio da lista pois o enlaçe é feito pelo ponteiro
+    inicio_da_lista->primeiro_no = novo;  //E o inicio da lista recebe o novo
 }
 
+
 void exibe_lista(Lista *inicio){
-    Nodo* atual;
-    for(Nodo * p=inicio->primeiro_no; p!= NULL; p=p->prox){
-        printf("%d, ", p->info);
+
+    Nodo *atual;
+    //Exibição da lista com While
+    /*
+    while(atual != NULL){
+        printf("%d, ",atual->info);
+        atual = atual->prox;
+    }
+    printf("\n");
+    */
+   //Exibição da lista como for
+    for(atual = inicio->primeiro_no; atual != NULL; atual = atual->prox){
+        printf("%d, ", atual->info);
     }
     
 }
