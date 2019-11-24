@@ -27,17 +27,17 @@ Nodo *cria_nodo(){
 
 //Como parâmetros são passados um ponteiro que representa a lista (inicio) e um valor (n)
 void insere(Lista *inicio_da_lista, int n){
-    Nodo *novo = cria_nodo();
+    Nodo *novo = (Nodo *)malloc(sizeof(Nodo));
     novo->info = n;
-    novo->prox = NULL;
+    novo->prox = inicio_da_lista->primeiro_no;
     inicio_da_lista->primeiro_no = novo;
     
 }
 
 void exibe_lista(Lista *inicio){
-
+    Nodo* atual;
     for(Nodo * p=inicio->primeiro_no; p!= NULL; p=p->prox){
-        printf("%d", p->info);
+        printf("%d, ", p->info);
     }
     
 }
@@ -56,9 +56,10 @@ int main(){
                 scanf("%d", &n);
                 insere(lista, n);
                 printf("\nO numero %d foi inserido na lista\n", n);
-            }if(opcao == 3){
+            }if(opcao == 2){
                 printf("Os elementos dessa lista são...");
                 exibe_lista(lista);
+                printf("\n");
             }
         }
     }else{
