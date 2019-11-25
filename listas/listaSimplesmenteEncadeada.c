@@ -85,25 +85,29 @@ int checa_elemento(Lista *inicio_da_lista, int n){
         }
         return 0;
     }
-    
 }
 
 void retira(Lista *inicio_da_lista, int n){
-    Nodo *anterior = NULL;
+    Nodo *anterior = NULL;  //Ponteiro para o elemento anterior
+    Nodo *atual = inicio_da_lista->primeiro_no;  //Ponteiro auxiliar (*atual) recebe o primeiro nó do inicio da lista
 
-    for(Nodo *atual = inicio_da_lista->primeiro_no; atual != NULL; atual = atual->prox){  //Percorro a lista
-        if(atual->info == n){  //Se o elemento estiver na lista
-            if(anterior == NULL){ //E se for o primeiro 
-                inicio_da_lista->primeiro_no = atual->prox;
-                printf("\nRetirando o elemento %d\n", n);
-            }else{
-                anterior->prox = atual->prox;
-                printf("\nRetirando o elemento %d\n", n);
-            }
-        }
-        free(atual);
+    while(atual != NULL && atual->info != n){  //Percorre a lista até que n seja igual a atual->info
+        anterior =  atual; //Anterior vai avançando
+        atual = atual->prox;  //Atual vai avançando, sendo que atual está um nó a frente de anterior
     }
+    if(anterior == NULL){  //Se anterior é nulo significa que estou no início da lista
+        inicio_da_lista->primeiro_no = atual->prox;  //Então o inicio da lista recebe o próximo nó
+        printf("\nRetirando o elemento %d\n", n);
+    }
+    else{  //Se o elemento anterior não for nulo
+        anterior->prox = atual->prox;  //O anterior no campo prox recebe o endereço de atual->prox, que é o próximo elemento após o atual
+        printf("\nRetirando o elemento %d\n", n);
+    }
+    free(atual);  //E deleto atual
+    
 }
+        
+
 
 int main(){ 
     Lista *lista = cria_lista();
