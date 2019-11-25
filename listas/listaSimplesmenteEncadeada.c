@@ -77,16 +77,32 @@ void exibe_lista(Lista *inicio_da_lista){
 }
 
 
-void checa_elemento(Lista *inicio_da_lista, int n){
+int checa_elemento(Lista *inicio_da_lista, int n){
     
     for(Nodo *atual = inicio_da_lista->primeiro_no; atual != NULL; atual = atual->prox){
-        if(n == atual->info){
-            printf("\nO elemento %d está na lista\n", n);
-        }else{
-            printf("\nO elemento não se encontra na lista\n");
+        if(atual->info == n){
+            return 1;
         }
+        return 0;
     }
-    return;
+    
+}
+
+void retira(Lista *inicio_da_lista, int n){
+    Nodo *anterior = NULL;
+
+    for(Nodo *atual = inicio_da_lista->primeiro_no; atual != NULL; atual = atual->prox){  //Percorro a lista
+        if(atual->info == n){  //Se o elemento estiver na lista
+            if(anterior == NULL){ //E se for o primeiro 
+                inicio_da_lista->primeiro_no = atual->prox;
+                printf("\nRetirando o elemento %d\n", n);
+            }else{
+                anterior->prox = atual->prox;
+                printf("\nRetirando o elemento %d\n", n);
+            }
+        }
+        free(atual);
+    }
 }
 
 int main(){ 
@@ -95,18 +111,22 @@ int main(){
 
     if(lista){
         while(opcao != 0){
-            printf("Digite 1 para inserir, 0 para sair, 2 para exibir, 3 para checar: ");
+            printf("Digite 1 para inserir, 0 para sair, 2 para exibir, 3 para checar, 4 para retirar: ");
             scanf("%d",&opcao);
             if(opcao == 1){
                 int n;
                 printf("Digite o numero a ser inserido: ");
                 scanf("%d", &n);
                 insere_ordenado(lista, n);
-                printf("\nO numero %d foi inserido na lista\n", n);
+                printf("\nO numero %d foi inserido na lista\n\n", n);
             }if(opcao == 2){
-                printf("Os elementos dessa lista são...");
-                exibe_lista(lista);
-                printf("\n");
+                if(lista->primeiro_no == NULL){
+                    printf("\nA lista não possui elementos\n");
+                }else{
+                    printf("\nOs elementos dessa lista são...");
+                    exibe_lista(lista);
+                    printf("\n\n");
+                }                
             }
             if(opcao == 3){
                 int n;
@@ -116,8 +136,21 @@ int main(){
                     printf("Digite o numero que deseja checar se está na lista: ");
                     scanf("%d", &n);
                     checa_elemento(lista, n);
-                }
-                
+                    if(checa_elemento){
+                        printf("\nO número %d foi encontrado na lista\n", n);
+                    }else{
+                        printf("\nO número %d não foi encontrado na lista\n", n);
+                    }
+                }                
+            }if(opcao == 4){
+                int n;
+                if(lista->primeiro_no == NULL){
+                    printf("\nLista vazia, impossível retirar!\n");
+                }else{
+                    printf("Digite o elemento que deseja retirar: ");
+                    scanf("%d", &n);
+                    retira(lista, n);
+              }       
             }
         }
     }else{
