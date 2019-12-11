@@ -40,7 +40,14 @@ int isEmpty(Pilha *inicio_da_pilha){
     return (inicio_da_pilha->topo == NULL);
 }
 
-
+void showStack(Pilha *inicio_da_pilha){
+    Nodo *atual;
+    atual = inicio_da_pilha->topo;
+    while(atual != NULL){
+        printf("%d \n", atual->info);
+        atual = atual->prox;
+    }
+}
 
 
 int main(){
