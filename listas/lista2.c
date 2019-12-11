@@ -1,3 +1,5 @@
+//Inpmementação de uma lista que insere no início e no fim
+
 #include <stdio.h>
 #include <stdlib.h>
 
