@@ -35,11 +35,21 @@ void insert(Fila *inicio_da_fila, int n){
     }inicio_da_fila->fim = novo;
 }
 
+int pop(Fila *inicio_da_fila){
+    Nodo *pop = inicio_da_fila->inicio;
+    int n = pop->info;
+    inicio_da_fila->inicio = pop->prox;
+    free(pop);
+    printf("\n Removendo %d da fila ... \n",n);
+    return n;
+}
+
 void exibeFila(Fila *incio_da_fila){
     printf("\n\nListando a fila...\n\n");
     for(Nodo *i = incio_da_fila->inicio; i != NULL; i = i->prox){
         printf("%d -> ", i->info);
     }
+        printf("\n");
 }
 
 
@@ -56,6 +66,10 @@ int main(){
             printf("Digite um numero para inserir: ");
             scanf("%d", &n);
             insert(fila, n);
+        }if(opcao == 2){
+            pop(fila);
+            exibeFila(fila);
+
         }if(opcao == 3){
             exibeFila(fila);
         }
