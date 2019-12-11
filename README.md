@@ -7,7 +7,7 @@ Curso sistemas de informações da Universidade do Estado da Bahia.
 
 ### Instalação do GCC com apt
 
-apt-get install gcc
+`apt-get install gcc`
 
 ### Compilação :
 
