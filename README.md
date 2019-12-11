@@ -3,17 +3,17 @@
 Manipulações de estruturas de dados para fins didadicos na disciplina Estrutura de dados 1.
 Curso sistemas de informações da Universidade do Estado da Bahia.
 
-##Linux
+## Linux
 
-###Instalação do GCC com apt
+### Instalação do GCC com apt
 
 apt-get install gcc
 
-###Compilação :
+### Compilação :
 
 gcc nome_do_programa.c -o prog
 
-###Execução :
+### Execução :
 
 ./prog
 
