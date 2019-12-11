@@ -16,19 +16,19 @@ Pilha *cria_pilha(){
     return inicio_da_pilha;
 }
 
-Nodo *cria_nodo(){
+Nodo *create_nodo(){
     Nodo *novo = (Nodo*)malloc(sizeof(Nodo)); //Aloco espaco para um novo valor
     return novo; //Retnorno esse valor
 }
 
-void insere(Pilha *inicio_da_pilha, int n){
+void push(Pilha *inicio_da_pilha, int n){
     Nodo *novo = cria_nodo();
     novo->info = n;
     novo->prox = inicio_da_pilha->topo;
     inicio_da_pilha->topo = novo;    
 }
 
-int remove(Pilha *inicio_da_pilha){
+int pop(Pilha *inicio_da_pilha){
     Nodo *pop = inicio_da_pilha->topo;
     int n = pop->info;
     free(pop);
@@ -39,3 +39,6 @@ int isEmpty(Pilha *inicio_da_pilha){
     return (inicio_da_pilha->topo == NULL);
 }
 
+void showStack(Pilha *inicio_da_pilha){
+    
+}
