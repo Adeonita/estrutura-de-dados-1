@@ -29,21 +29,27 @@ void insert(Fila *inicio_da_fila, int n){
     novo->info = n;  //inicialização do novo nó
     novo->prox = NULL; //inicialização do novo nó
     if(inicio_da_fila->fim != NULL){
-        inicio_da_fila->fim->prox = novo;
+        inicio_da_fila->fim->prox = novo;  //Insere no final
     }else{
-        inicio_da_fila->inicio = novo;
-    }inicio_da_fila->fim = novo;
+        inicio_da_fila->inicio = novo; //Insere no inicio
+    }inicio_da_fila->fim = novo; //Enlaça o final com o novo
 }
 
 int pop(Fila *inicio_da_fila){
-    Nodo *pop = inicio_da_fila->inicio;
-    int n = pop->info;
-    inicio_da_fila->inicio = pop->prox;
-    free(pop);
-    printf("\n Removendo %d da fila ... \n",n);
-    return n;
+    Nodo *atual = inicio_da_fila->inicio;  //Inicializa pop e coloca para ele apontar para o início
+    int n = atual->info;  //atribui a n pop->info
+    inicio_da_fila->inicio = atual->prox; //Aponta para o novo inicio
+    free(atual);  //Deleta o atual
+    return n;  //Retorna o numero removido
 }
 
+int isEmpty(Fila *fila){
+    if(fila->inicio == NULL && fila->fim == NULL){
+        return 1;
+    }else{
+        return 0;
+    }
+}
 void exibeFila(Fila *incio_da_fila){
     printf("\n\nListando a fila...\n\n");
     for(Nodo *i = incio_da_fila->inicio; i != NULL; i = i->prox){
@@ -59,7 +65,7 @@ int main(){
     Fila *fila = cria_fila();
 
     while(opcao =! 0){
-        printf("Digite 1 para inserir, 2 para retirar, 3 para listar e 0 para sair\n");
+        printf("Digite 1 para inserir, 2 para retirar, 3 para listar e 0 para sair: ");
         scanf("%d",&opcao);
         if(opcao == 1){
             int n;
@@ -67,11 +73,18 @@ int main(){
             scanf("%d", &n);
             insert(fila, n);
         }if(opcao == 2){
-            pop(fila);
-            exibeFila(fila);
-
+            if(isEmpty){
+                printf("Impossivel retirar, a fila está vazia\n");
+            }else{
+                printf("Removendo %d da fila ...", pop(fila));
+                exibeFila(fila);
+            }
         }if(opcao == 3){
-            exibeFila(fila);
+            if(isEmpty){
+                printf("\nA fila está vazia\n");
+            }else{
+                exibeFila(fila);
+            }
         }
     }
     
