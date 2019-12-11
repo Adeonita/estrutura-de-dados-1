@@ -67,11 +67,9 @@ int main(){
         }
         if(option == 2){
             printf("O numero %d foi removido da pilha \n\n",  pop(pilha));
-            showStack(pilha);
-
         }
         if(option == 3){
             showStack(pilha);
-        }
+        }       
     }
 }
