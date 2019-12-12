@@ -43,9 +43,10 @@ int pop(Fila *inicio_da_fila){
     return n;  //Retorna o numero removido
 }
 
-int isEmpty(Fila *fila){  //CORRIGIR
+int isEmpty(Fila *fila){  
     return fila->inicio == NULL;
 }
+
 void exibeFila(Fila *incio_da_fila){
     printf("\n\nListando a fila...\n\n");
     for(Nodo *i = incio_da_fila->inicio; i != NULL; i = i->prox){
@@ -54,6 +55,16 @@ void exibeFila(Fila *incio_da_fila){
         printf("\n");
 }
 
+//Terminar de implementar 
+void exibeReverse(Fila *incio_da_fila){
+    Nodo *pop = incio_da_fila->fim;
+    int n = pop->info;
+    incio_da_fila->fim = pop->prox; //O endereço do elemento anterior
+    free(pop);
+    printf("%d", n);
+}
+
+
 
 
 int main(){
@@ -61,7 +72,7 @@ int main(){
     Fila *fila = cria_fila();
 
     while(opcao =! 0){
-        printf("Digite 1 para inserir, 2 para retirar, 3 para listar e 0 para sair: ");
+        printf("Digite 1 para inserir, 2 para retirar, 3 para listar, 4 Exibir fila reversa e 0 para sair: ");
         scanf("%d",&opcao);
         if(opcao == 1){
             int n;
@@ -81,6 +92,8 @@ int main(){
             }else{
                 exibeFila(fila);
             }
+        }if(opcao == 4){
+            exibeReverse(fila);
         }
     }
     
