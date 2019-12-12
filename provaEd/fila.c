@@ -43,12 +43,8 @@ int pop(Fila *inicio_da_fila){
     return n;  //Retorna o numero removido
 }
 
-int isEmpty(Fila *fila){
-    if(fila->inicio == NULL && fila->fim == NULL){
-        return 1;
-    }else{
-        return 0;
-    }
+int isEmpty(Fila *fila){  //CORRIGIR
+    return fila->inicio == NULL;
 }
 void exibeFila(Fila *incio_da_fila){
     printf("\n\nListando a fila...\n\n");
@@ -73,14 +69,14 @@ int main(){
             scanf("%d", &n);
             insert(fila, n);
         }if(opcao == 2){
-            if(isEmpty){
-                printf("Impossivel retirar, a fila está vazia\n");
+            if(isEmpty(fila) ){
+                printf("\nA fila está vazia, impossível remover \n");
             }else{
-                printf("Removendo %d da fila ...", pop(fila));
+                printf("\nRemovendo %d da fila ...", pop(fila));
                 exibeFila(fila);
             }
         }if(opcao == 3){
-            if(isEmpty){
+            if(isEmpty(fila) ){
                 printf("\nA fila está vazia\n");
             }else{
                 exibeFila(fila);
