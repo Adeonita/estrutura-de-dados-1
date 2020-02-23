@@ -55,13 +55,30 @@ void exibeFila(Fila *incio_da_fila){
         printf("\n");
 }
 
+/*void printReverse(Lista *inicio_da_lista){
+    for(inicio_da_lista->primeiro_no; inicio_da_lista->primeiro_no != NULL; ){
+        printf("%d",inicio_da_lista->primeiro_no->info);  
+        inicio_da_lista->primeiro_no = inicio_da_lista->primeiro_no->prox; 
+    }
+}*/
+
 //Terminar de implementar 
 void exibeReverse(Fila *incio_da_fila){
-    Nodo *pop = incio_da_fila->fim;
+    int lenth = 0;
+
+    for(incio_da_fila->inicio; incio_da_fila->inicio != NULL; incio_da_fila->inicio = incio_da_fila->inicio->prox){
+        printf("%d", incio_da_fila->inicio->info);
+            lenth = lenth+1;        
+    }
+
+    printf("\nTamanho do array %d\n", lenth);
+    
+    /*Nodo *pop = incio_da_fila->fim;
     int n = pop->info;
     incio_da_fila->fim = pop->prox; //O endereço do elemento anterior
+    printf("\nElemento anterior: %d", incio_da_fila->fim->info);
     free(pop);
-    printf("%d", n);
+    printf("%d", n);*/
 }
 
 

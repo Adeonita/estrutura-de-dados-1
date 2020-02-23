@@ -81,6 +81,7 @@ void exibe_lista(Lista *inicio_da_lista){
 }
 
 
+
 int checa_elemento(Lista *inicio_da_lista, int n){
     
     for(Nodo *atual = inicio_da_lista->primeiro_no; atual != NULL; atual = atual->prox){
@@ -123,6 +124,8 @@ void separaNumero(Lista *inicio_da_lista){
         atual = atual->prox;
     }
 }
+
+
         
 
 
@@ -145,7 +148,8 @@ int main(){
                     printf("\nA lista não possui elementos\n");
                 }else{
                     printf("\nOs elementos dessa lista são...");
-                    exibe_lista(lista);
+                    printReverse(lista);
+                    //exibe_lista(lista);
                     printf("\n\n");
                 }                
             }
